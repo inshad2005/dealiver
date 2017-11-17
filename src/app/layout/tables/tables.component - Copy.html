@@ -1,8 +1,8 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Users Management'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>
     <div class="row">
-        <div class="col col-xl-12 col-lg-12">
-            <!-- <div class="card mb-3">
+        <div class="col col-xl-6 col-lg-12">
+            <div class="card mb-3">
                 <div class="card-header">
                     Basic example
                 </div>
@@ -26,13 +26,7 @@
                         <tr>
                             <th scope="row">2</th>
                             <td>Jacob</td>
-                            <td>
-                             <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span></td>
+                            <td>Thornton</td>
                             <td>@fat</td>
                         </tr>
                         <tr>
@@ -309,44 +303,16 @@
                     </tr>
                     </tbody>
                 </table>
-            </div> -->
-            <div class="card mb-6">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <!-- <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button">
-                        <span class="navbar-toggler-icon"></span>
-                    </button> -->
-                    <div class="collapse navbar-collapse">
-                       <!--  <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
-                            </li>
-                        </ul> -->
-                        <!-- <form class="form-inline my-2 my-lg-0 right"> -->
-                        <div class="form-inline my-2 my-lg-0 right">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" >Search</button>
-                        </div>
-                        <!-- </form> -->
-                    </div>
-                </nav>
-               <div class="table-responsive">
-                   <table class="card-body table">
+            </div>
+            <div class="card mb-3">
+                <div class="card-header">Contextual classes</div>
+                <table class="card-body table">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name </th>
-                        <th>E-mail</th>
-                        <th>Phone Number</th>
-                        <th>Prefrence</th>
-                        <th>Status </th>
-                        <th>Action</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -355,194 +321,33 @@
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>
-                            <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </td>
-                        <td>
-                            <a class="fa fa-eye mr20 ml5-o fa-lg"> </a>
-                            <a class="fa fa-pencil-square-o fa-lg edit-button"></a>
-                         </td>
                     </tr>
                     <tr class="table-success">
                         <th scope="row">2</th>
                         <td>Jacob</td>
                         <td>Thornton</td>
                         <td>@fat</td>
-                        <td>Jacob</td>
-                        <td>
-                             <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </td>
-                        <td>
-                             <a class="fa fa-eye mr20 ml5-o fa-lg"> </a>
-                            <a class="fa fa-pencil-square-o fa-lg edit-button"></a>
-                        </td>
                     </tr>
                     <tr class="table-info">
                         <th scope="row">3</th>
                         <td>Larry</td>
                         <td>the Bird</td>
                         <td>@twitter</td>
-                        <td>Larry</td>
-                        <td>
-                             <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </td>
-                        <td>
-                            <a class="fa fa-eye mr20 ml5-o fa-lg"> </a>
-                            <a class="fa fa-pencil-square-o fa-lg edit-button"></a>
-                        </td>
                     </tr>
                     <tr class="table-warning">
                         <th scope="row">3</th>
                         <td>Larry</td>
                         <td>the Bird</td>
                         <td>@twitter</td>
-                        <td>Larry</td>
-                        <td>
-                             <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </td>
-                        <td>
-                            <a class="fa fa-eye mr20 ml5-o fa-lg"> </a>
-                            <a class="fa fa-pencil-square-o fa-lg edit-button"></a>
-                        </td>
                     </tr>
                     <tr class="table-danger">
                         <th scope="row">3</th>
                         <td>Larry</td>
                         <td>the Bird</td>
                         <td>@twitter</td>
-                        <td>Larry</td>
-                        <td>
-                             <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </td>
-                        <td>
-                            <a class="fa fa-eye mr20 ml5-o fa-lg"> </a>
-                            <a class="fa fa-pencil-square-o fa-lg edit-button"></a>
-                        </td>
-                    </tr>
-                    <tr class="table-active">
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>
-                            <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </td>
-                        <td>
-                            <a class="fa fa-eye mr20 ml5-o fa-lg"> </a>
-                            <a class="fa fa-pencil-square-o fa-lg edit-button"></a>
-                         </td>
-                    </tr>
-                     <tr class="table-success">
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>Jacob</td>
-                        <td>
-                         <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span></td>
-                        <td>
-                            <a class="fa fa-eye mr20 ml5-o fa-lg"> </a>
-                            <a class="fa fa-pencil-square-o fa-lg edit-button"></a>
-                        </td>
-                    </tr>
-                    <tr class="table-info">
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>Larry</td>
-                        <td>
-                             <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </td>
-                        <td>
-                            <a class="fa fa-eye mr20 ml5-o fa-lg"> </a>
-                            <a class="fa fa-pencil-square-o fa-lg edit-button"></a>
-                        </td>
-                    </tr>
-                    <tr class="table-warning">
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>Larry</td>
-                        <td>
-                             <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </td>
-                        <td>
-                             <a class="fa fa-eye mr20 ml5-o fa-lg"> </a>
-                            <a class="fa fa-pencil-square-o fa-lg edit-button"></a>
-                        </td>
-                    </tr>
-                    <tr class="table-danger">
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>Larry</td>
-                        <td>
-                             <span class="cus-switch">
-                                <label class="switch m-b-0">
-                                    <input type="checkbox"   (change)="onStatusChange()"/>
-                                    <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </td>
-                        <td>
-                            <a class="fa fa-eye mr20 ml5-o fa-lg"> </a>
-                            <a class="fa fa-pencil-square-o fa-lg edit-button"></a>
-                        </td>
                     </tr>
                     </tbody>
                 </table>
-               </div>
-                
             </div>
         </div>
     </div>
