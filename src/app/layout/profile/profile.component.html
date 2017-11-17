@@ -1,0 +1,83 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Profile'" [icon]="'fa-table'"></app-page-header>
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Basic example
+                </div>
+                <div class="card-body table-responsive">
+                <div class="profile-image">
+                    <img class="img-thumbnail-profile" src="http://placehold.it/400x400" alt="">
+                </div>
+                <div class="profile-data">
+                    <form role="form">
+
+                    <fieldset [disabled]="false">
+
+                        <div class="form-group">
+                            <label for="disabledSelect">Disabled input</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" [disabled]="false">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disabledSelect">Disabled select menu</label>
+                            <select id="disabledSelect" class="form-control">
+                                <option>Disabled select</option>
+                            </select>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Disabled Checkbox
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Disabled Button</button>
+
+                    </fieldset>
+
+                </form>
+                </div>
+                 
+                    <!-- <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>
+                             <span class="cus-switch">
+                                <label class="switch m-b-0">
+                                    <input type="checkbox"   (change)="onStatusChange()"/>
+                                    <span class="slider round"></span>
+                                </label>
+                            </span></td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        </tbody>
+                    </table> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -61,3 +61,17 @@
   display: inline-block;
   vertical-align: middle;
 }
+
+.profile-image {
+    float: left;
+    width: 36%;
+}
+.img-thumbnail-profile {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  height: auto;
+  max-width: 70%;
+  padding: 0.25rem;
+  transition: all 0.2s ease-in-out 0s;
+}
