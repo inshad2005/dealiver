@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { routerTransition } from '../router.animations';
 import {AdminService} from '../shared/services/admin/admin.service'
@@ -20,10 +19,7 @@ export class LoginComponent implements OnInit {
         this.loginModel={
           
         }
-         this.complexForm = fb.group({
-            'password': [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
-            'email': [null, Validators.compose([Validators.required, Validators.minLength(2),Validators.pattern(EMAIL_REGEX)])],
-        }) 
+        
     }
 
     ngOnInit() {
