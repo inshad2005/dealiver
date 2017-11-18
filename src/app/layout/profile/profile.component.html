@@ -13,29 +13,27 @@
                 <div class="profile-data">
                     <form role="form">
 
-                    <fieldset [disabled]="false">
+                    <fieldset [disabled]="nonEditableStatus">
 
                         <div class="form-group">
-                            <label for="disabledSelect">Disabled input</label>
-                            <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" [disabled]="false">
+                            <label for="disabledSelect">First Name</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="First Name" >
                         </div>
-
                         <div class="form-group">
-                            <label for="disabledSelect">Disabled select menu</label>
-                            <select id="disabledSelect" class="form-control">
-                                <option>Disabled select</option>
-                            </select>
+                            <label for="disabledSelect">Last Name</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="Last Name" [disabled]="false">
                         </div>
-
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Disabled Checkbox
-                            </label>
+                        <div class="form-group">
+                            <label for="disabledSelect">User Name</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="User Name" [disabled]="false">
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Disabled Button</button>
-
+                        <div class="form-group">
+                            <label for="disabledSelect">User Email</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="User Email" [disabled]="false">
+                        </div>
                     </fieldset>
+                        <button *ngIf="nonEditableStatus" type="submit" class="btn btn-primary" (click)="onEdit()">Edit</button>
+                        <button *ngIf="!nonEditableStatus" type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
 
                 </form>
                 </div>

@@ -8,8 +8,16 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class ProfileComponent implements OnInit {
+	nonEditableStatus:boolean=true
     constructor() {}
 
     ngOnInit() {}
     onStatusChange(){}
+    onEdit(){
+    	alert('onedit')
+      this.nonEditableStatus=false
+    }
+    onSubmit(){
+
+    }
 }

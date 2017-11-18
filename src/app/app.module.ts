@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ export function createTranslateLoader(http: HttpClient) {
         CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         TranslateModule.forRoot({
             loader: {
@@ -30,7 +32,8 @@ export function createTranslateLoader(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule
     ],
     declarations: [AppComponent],
     providers: [AuthGuard],
