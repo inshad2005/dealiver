@@ -3,17 +3,19 @@
         <div class="col-md-4">
             <img src="assets/images/logo.png" width="150px" class=" " />
             <h1>Dealiver Admin</h1>
-            <form role="form"  >
+            <form role="form"  #loginForm="ngForm" novalidate>
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text"     [(ngModel)]="loginModel.email"  name="email" class="form-control input-underline input-lg" id="" placeholder="Email">
-                    </div>
+                        <input type="text"     [(ngModel)]="loginModel.email"  name="email" class="form-control input-underline input-lg" id="" placeholder="Email" #email="ngModel"  pattern="^[a-zA-Z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required>
+                    </div> 
+                        <p padding style="color:#D23839" [hidden]="email.valid || !email.touched">Email required</p>
 
                     <div class="form-group">
-                        <input type="password" [(ngModel)]="loginModel.password"  name="password" class="form-control input-underline input-lg" id="" placeholder="Password">
+                        <input type="password" [(ngModel)]="loginModel.password" #password="ngModel"  name="password" class="form-control input-underline input-lg" id="" placeholder="Password">
                     </div>
+                    <p padding style="color:#D23839" [hidden]="password.valid || !password.touched">Password required</p>
                 </div>
-                <a class="btn rounded-btn"  (click)="onLoggedin()"> Log in </a>
+                <button class="btn rounded-btn"  (click)="onLoggedin()" [disabled]="loginForm.form.invalid"> Log in </button>
                 &nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/forgot-password']">Forgot Password</a>
             </form>
