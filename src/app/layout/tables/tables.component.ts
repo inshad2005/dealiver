@@ -20,32 +20,32 @@ export class TablesComponent implements OnInit {
     	this.users=[];
     	this.usersDataBackup=[];
     }
+
+    ngOnInit() {
+        this.adminService.getUserDetail().subscribe((data)=>{
+            if(data.response){
+                this.usersDataBackup=data.data
+                for (var i = 0; i<this.usersDataBackup.length; i++) {
+                    if (this.usersDataBackup[i].status=='active') {
+                        this.usersDataBackup[i].status=true
+                    }else{
+                        this.usersDataBackup[i].status=false
+                    }
+                }
+                for (var i = this.pageIndex*this.pageSize; i<(this.pageIndex*this.pageSize+this.pageSize); i++) {
+                 this.users.push(this.usersDataBackup[i])
+                 }
+            }else{
+                alert(data.message)
+            }
+        })
+    }
     check(i){
     	if(i>this.listIndex*this.listSize){
     	return false;
     	}else{
     		return true;
     	}
-    }
-
-    ngOnInit() {
-    	this.adminService.getUserDetail().subscribe((data)=>{
-    		if(data.response){
-	    		this.usersDataBackup=data.data
-	    		for (var i = 0; i<this.usersDataBackup.length; i++) {
-	    			if (this.usersDataBackup[i].status=='active') {
-	    				this.usersDataBackup[i].status=true
-	    			}else{
-	    				this.usersDataBackup[i].status=false
-	    			}
-	    		}
-	    		for (var i = this.pageIndex*this.pageSize; i<(this.pageIndex*this.pageSize+this.pageSize); i++) {
-                 this.users.push(this.usersDataBackup[i])
-	         	}
-    		}else{
-    			alert(data.message)
-    		}
-    	})
     }
     pageoption(event){
     	this.pageSize=event.pageSize

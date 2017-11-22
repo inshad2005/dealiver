@@ -7,12 +7,14 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
     imports: [
         CommonModule,
         LayoutRoutingModule,
         TranslateModule,
+        ToastModule.forRoot(),
         NgbDropdownModule.forRoot()
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent]

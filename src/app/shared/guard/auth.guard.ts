@@ -8,9 +8,9 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router,private userService:UserService) {}
 
     canActivate() {
-    	let data = localStorage['user'];
-        	this.userService.user=JSON.parse(data);
         if (localStorage.getItem('isLoggedin')) {
+    	    let data = localStorage['user'];
+        	this.userService.user=JSON.parse(data);
         	
             return true;
         }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ToastsManager , Toast} from 'ng2-toastr';
 import { UserService } from '../../user.service'
 import { AdminService } from '../../shared/services/admin/admin.service';
 import { ENV } from '../../env'
@@ -22,8 +23,10 @@ export class ProfileComponent implements OnInit {
     confirmPassword;
     confirmPasswordCheck:boolean=true;
     constructor(private adminService:AdminService,
-                private userService:UserService) {
-        this.userData={}
+                private userService:UserService,public toastr: ToastsManager, 
+                 vcr: ViewContainerRef) {
+                this.toastr.setRootViewContainerRef(vcr);
+                this.userData={}
     }
 
     ngOnInit() {
@@ -44,10 +47,11 @@ export class ProfileComponent implements OnInit {
         .subscribe((data)=>{
             console.log(data);
             if(data.response){
+                this.toastr.info('Password updated successfully' ,'Success',{toastLife: 3000, showCloseButton: true});
                 this.userService.user=data.data;
                 this.userData=this.userService.user;
             }else{
-                alert('sonmthing wrong')
+                this.toastr.error('Something went wrong, Please try again' ,'Error',{toastLife: 3000, showCloseButton: true});
             }
         })
         this.confirmPasswordCheck=true;
@@ -71,10 +75,11 @@ export class ProfileComponent implements OnInit {
         .subscribe((data)=>{
             console.log(data);
             if(data.response){
+                this.toastr.info('Information updated successfully' ,'Success',{toastLife: 3000, showCloseButton: true});
                 this.userService.user=data.data;
                 this.userData=this.userService.user;
             }else{
-                alert('sonmthing wrong')
+               this.toastr.error('Something went wrong, Please try again' ,'Error',{toastLife: 3000, showCloseButton: true});
             }
         })
         this.nonEditableStatus=true

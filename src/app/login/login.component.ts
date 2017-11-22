@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ToastsManager , Toast} from 'ng2-toastr';
 import { routerTransition } from '../router.animations';
 import {AdminService} from '../shared/services/admin/admin.service'
 import { UserService }from '../user.service'
@@ -17,10 +18,12 @@ export class LoginComponent implements OnInit {
     constructor(public router: Router,
                 private adminService:AdminService,
                 private fb: FormBuilder,
-                private userService:UserService) {
-        this.loginModel={}
-        
-    }
+                private userService:UserService,
+                public toastr: ToastsManager, 
+                vcr: ViewContainerRef,) {
+                    this.toastr.setRootViewContainerRef(vcr);
+                    this.loginModel={}    
+     }
 
     ngOnInit() {
      // this.adminService.onGetAdmin()
@@ -41,9 +44,14 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage['user'] = JSON.stringify(data.data);
                 this.userService.user = data.data;
+                this.toastr.success( this.userService.user.first_name ,'Welcome Back. ',{toastLife: 3000, showCloseButton: true});
                 this.router.navigate(['/dashboard']);
+              //   setTimeout(()=>{
+              // },2000)
+            }else if (data.message=='wrong credentials') {
+                 this.toastr.error( data.message ,'Authentication Failed ',{toastLife: 3000, showCloseButton: true});
             }else{
-                alert('something wrong')
+                 this.toastr.error( 'Something Went Wrong Please Try Again' ,'Authentication Failed ',{toastLife: 3000, showCloseButton: true});
             }
         })
     }
