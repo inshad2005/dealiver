@@ -20,8 +20,52 @@ export class AdminService {
         catchError(this.handleError('get Category Test', []))
       
   );
-}
-
+  }
+  login(data): Observable<any> {
+    const url = `${ENV.mainApi}/login`;
+    return this.http.post<any>(url,data,httpOptions)
+    .pipe(
+        tap(heroes => this.log(`get Category Test`)),
+        catchError(this.handleError('get Category Test', []))
+      
+    );
+  }
+  updateProfile(data,flag): Observable<any> {
+    const url = `${ENV.mainApi}/update/${flag}`;
+    return this.http.post<any>(url,data,httpOptions)
+    .pipe(
+        tap(heroes => this.log(`get Category Test`)),
+        catchError(this.handleError('get Category Test', []))
+      
+    );
+  }
+  forgot(data): Observable<any> {
+    const url = `${ENV.mainApi}/forgot`;
+    return this.http.post<any>(url,data,httpOptions)
+    .pipe(
+        tap(heroes => this.log(`get Category Test`)),
+        catchError(this.handleError('get Category Test', []))
+      
+    );
+  }
+  getUserDetail(): Observable<any> {
+    const url = `${ENV.mainApi}/users`;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get Category Test`)),
+          catchError(this.handleError('get Category Test', []))
+        
+    );
+  }
+  changeUserStatus(id): Observable<any> {
+    const url = `${ENV.mainApi}/updateuserstatus/`+id;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get Category Test`)),
+          catchError(this.handleError('get Category Test', []))
+        
+    );
+  }
   /**
    * Handle Http operation that failed.
    * Let the app continue.

@@ -10,7 +10,7 @@ export interface Environment {
 }
 
 export const LOCAL: Environment = {
-    mainApi: 'http://78.47.222.237:8480/esb/api/fsp',
+    mainApi: 'http://127.0.0.1:3001',
     timeout: HTTP_TIMEOUT,
     debug: true,
     bypass: true,
@@ -35,4 +35,4 @@ export const PROD: Environment = {
     angularProd: false
 };
 
-export const ENV: Environment =PROD;
+export const ENV: Environment =LOCAL;
