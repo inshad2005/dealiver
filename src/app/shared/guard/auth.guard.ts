@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
     canActivate() {
         if (localStorage.getItem('isLoggedin')) {
     	    let data = localStorage['user'];
-        	this.userService.user=JSON.parse(data);
+        	this.userService.user.admin=JSON.parse(data);
         	
             return true;
         }

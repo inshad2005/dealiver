@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
             if(data.response){
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage['user'] = JSON.stringify(data.data);
-                this.userService.user = data.data;
-                this.toastr.success( this.userService.user.first_name ,'Welcome Back. ',{toastLife: 3000, showCloseButton: true});
+                this.userService.user.admin = data.data;
+                this.toastr.success( this.userService.user.admin.first_name ,'Welcome Back. ',{toastLife: 3000, showCloseButton: true});
                 this.router.navigate(['/dashboard']);
               //   setTimeout(()=>{
               // },2000)

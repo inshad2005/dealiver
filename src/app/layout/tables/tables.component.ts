@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { routerTransition } from '../../router.animations';
 import { AdminService } from '../../shared/services/admin/admin.service'
+import { UserService }from '../../user.service'
 @Component({
     selector: 'app-tables',
     templateUrl: './tables.component.html',
@@ -16,7 +18,11 @@ export class TablesComponent implements OnInit {
 	pageIndex=0  
 	pageSize=10
 
-    constructor(private adminService:AdminService) {
+    constructor(
+        private adminService:AdminService,
+        public router: Router,
+        private userService:UserService
+        ) {
     	this.users=[];
     	this.usersDataBackup=[];
     }
@@ -81,5 +87,13 @@ export class TablesComponent implements OnInit {
     	}else{
     		return false
     	}
+    }
+
+    onUserDetails(user){
+     this.userService.user.user=user
+     this.router.navigate(['/user-profile'])
+    }
+    onUserEdit(user){
+     this.router.navigate(['/user-profile'])
     }
 }

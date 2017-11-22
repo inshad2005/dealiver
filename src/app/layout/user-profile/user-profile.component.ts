@@ -1,18 +1,17 @@
 import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ToastsManager , Toast} from 'ng2-toastr';
 import { UserService } from '../../user.service'
 import { AdminService } from '../../shared/services/admin/admin.service';
 import { ENV } from '../../env'
 @Component({
-    selector: 'app-profile',
-    templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.scss'],
+    selector: 'app-user-profile',
+    templateUrl: './user-profile.component.html',
+    styleUrls: ['./user-profile.component.scss'],
     animations: [routerTransition()]
 })
-export class ProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit {
 	nonEditableStatus:boolean=true
     userData;
     image='assets/images/400x400.png';
@@ -25,15 +24,14 @@ export class ProfileComponent implements OnInit {
     confirmPasswordCheck:boolean=true;
     constructor(private adminService:AdminService,
                 private userService:UserService,public toastr: ToastsManager, 
-                 vcr: ViewContainerRef,
-                 public router: Router) {
+                 vcr: ViewContainerRef) {
                 this.toastr.setRootViewContainerRef(vcr);
                 this.userData={}
     }
 
     ngOnInit() {
-        this.userData=this.userService.user.admin;
-        this.image=ENV.mainApi+'/www/images/'+this.userService.user.admin.image;
+        this.userData=this.userService.user.user;
+        this.image=ENV.mainApi+'/www/images/'+this.userService.user.user.image;
         console.log(this.userData)
     }
     onStatusChange(){}
@@ -50,8 +48,8 @@ export class ProfileComponent implements OnInit {
             console.log(data);
             if(data.response){
                 this.toastr.info('Password updated successfully' ,'Success',{toastLife: 3000, showCloseButton: true});
-                this.userService.user.admin=data.data;
-                this.userData=this.userService.user.admin;
+                this.userService.user=data.data;
+                this.userData=this.userService.user;
             }else{
                 this.toastr.error('Something went wrong, Please try again' ,'Error',{toastLife: 3000, showCloseButton: true});
             }
@@ -78,8 +76,8 @@ export class ProfileComponent implements OnInit {
             console.log(data);
             if(data.response){
                 this.toastr.info('Information updated successfully' ,'Success',{toastLife: 3000, showCloseButton: true});
-                this.userService.user.admin=data.data;
-                this.userData=this.userService.user.admin;
+                this.userService.user=data.data;
+                this.userData=this.userService.user;
             }else{
                this.toastr.error('Something went wrong, Please try again' ,'Error',{toastLife: 3000, showCloseButton: true});
             }
