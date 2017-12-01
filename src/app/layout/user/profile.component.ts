@@ -27,8 +27,13 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+<<<<<<< HEAD
         this.userData=this.userService.user;
         this.image=ENV.mainApi+'/www/images/'+this.userService.user.admin.image;
+=======
+        this.userData=this.userService.user.user;
+        this.image=ENV.mainApi+'/www/images/'+this.userService.user.user.image;
+>>>>>>> c1ed25c2fc85047860578cadbb597d831685d274
         console.log(this.userData)
     }
     onStatusChange(){}
