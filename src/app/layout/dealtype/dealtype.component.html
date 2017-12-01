@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Users Management'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header [heading]="'Deal Type Management'" [icon]="'fa-cubes'"></app-page-header>
     <div class="row">
         <div class="col col-xl-12 col-lg-12">
             <div class="card mb-6">
@@ -7,6 +7,13 @@
                     <div class="collapse navbar-collapse">
                         <div class="mr-auto">
                             <span>
+                                <a *ngIf="!add_new" (click)="add_new=!add_new">
+                                    <span><i class="fa fa-plus"></i></span>
+                                </a>
+                                <div *ngIf="add_new">
+                                    <input class="form-control table-input-width" type="text" placeholder="Enter Name" name="type_value" [(ngModel)]="new_type_value">
+                                    <button (click)="add_new=!add_new;createdealtype(pager)" [disabled]="check_valid()" type="submit" class="profile-page-button btn btn-primary add-new-margin-left">Submit</button>
+                                </div>
                             </span>
                         </div>
                         <form class="form-inline my-2 my-lg-0 right">
@@ -22,10 +29,7 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>E-mail</th>
-                        <th>Phone Number</th>
-                        <th>Prefrence</th>
+                        <th>Type Name</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -33,11 +37,14 @@
                     <tbody *ngIf="usersDataBackup && users">
                         <tr *ngFor="let user of users;let i = index "  [class]="getClass(i)">
                             <th scope="row">{{(pageIndex*pageSize)+i+1}}</th>
-                            <td>{{user.first_name}} {{user.last_name}}</td>
-                            <td>{{user.email}}</td>
-                            <td>{{user.phone_no}}</td>
-                            <td >{{user.prefrence?.pref_name}}</td>
-                            <td>
+                            <td >
+                                <span [hidden]="edit_type==i+1">{{user.type_name}}</span>
+                                <div [hidden]="edit_type!=i+1">
+                                    <input class="form-control table-input-width" type="text" placeholder="Name" name="first_name" [(ngModel)]="input_value" >
+                                    <label style="margin:5px"><a *ngIf="edit_type==i+1" class="fa fa-check fa-lg user-button" (click)="edit_type=0;updateDeal(input_value,user.id)"></a></label>
+                                </div>
+                            </td>
+                            <td >
                                  <span class="cus-switch">
                                     <label class="switch m-b-0">
                                         <input type="checkbox" [(ngModel)]="user.status" (change)="onStatusChange(user);">
@@ -45,9 +52,9 @@
                                     </label>
                                 </span>
                             </td>
-                            <td>
-                                <a href="javascript:void(0)" class="fa fa-eye mr20 ml5-o fa-lg user-button"  (click)="onUserDetails(user)"> </a>
-                                <a href="javascript:void(0)" class="fa fa-pencil-square-o fa-lg user-button" (click)="onUserEdit(user)"></a>
+                            <td >
+                                <a *ngIf="edit_type!=i+1" href="javascript:void(0)" class="fa fa-pencil-square-o fa-lg user-button" (click)="edit_type=i+1"></a>
+                                <a *ngIf="edit_type==i+1" class="fa fa-check fa-lg user-button" (click)="edit_type=0;updateDeal(input_value,user.id)"></a>
                             </td>
                         </tr>
 

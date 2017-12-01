@@ -8,8 +8,8 @@
                 </div>
                 <div class="card-body table-responsive">
                 <div class="profile-image">
-                    <img [hidden]="nonEditableStatus" width="400px" height="400px" alt="" [src]="image" class="img-thumbnail-profile" (click)="file.click()" />
-                    <img [hidden]="!nonEditableStatus" width="400px" height="400px" class="img-thumbnail-profile" [src]="image" alt="">
+                    <img [hidden]="nonEditableStatus" width="400px" height="400px" alt="no_image.jpg" [src]="image" class="img-thumbnail-profile" (click)="file.click()" />
+                    <img [hidden]="!nonEditableStatus" width="400px" height="400px" class="img-thumbnail-profile" [src]="image" alt="no_image.jpg">
                     <div style="display: none;"><input type="file" accept="image/*" #file id="uploadImage" (change)="onUploadImage($event)"></div>
                 </div>
                 <div class="profile-data">

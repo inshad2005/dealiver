@@ -39,6 +39,15 @@ export class AdminService {
       
     );
   }
+  updateUser(data): Observable<any> {
+    const url = `${ENV.mainApi}/updateUser`;
+    return this.http.post<any>(url,data,httpOptions)
+    .pipe(
+        tap(heroes => this.log(`get Category Test`)),
+        catchError(this.handleError('get Category Test', []))
+      
+    );
+  }
   forgot(data): Observable<any> {
     const url = `${ENV.mainApi}/forgot`;
     return this.http.post<any>(url,data,httpOptions)
@@ -60,6 +69,42 @@ export class AdminService {
   changeUserStatus(id): Observable<any> {
     const url = `${ENV.mainApi}/updateuserstatus/`+id;
     return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get Category Test`)),
+          catchError(this.handleError('get Category Test', []))
+        
+    );
+  }
+  getDealTypes(): Observable<any> {
+    const url = `${ENV.mainApi}/dealtype`;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get Category Test`)),
+          catchError(this.handleError('get Category Test', []))
+        
+    );
+  }
+  changeDealtypeStatus(id): Observable<any> {
+    const url = `${ENV.mainApi}/updatedealtypestatus/`+id;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get Category Test`)),
+          catchError(this.handleError('get Category Test', []))
+        
+    );
+  }
+  updateDealType(data): Observable<any> {
+    const url = `${ENV.mainApi}/updatedealtypename`;
+    return this.http.post<any>(url,data,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get Category Test`)),
+          catchError(this.handleError('get Category Test', []))
+        
+    );
+  }
+  createdealtype(data): Observable<any> {
+    const url = `${ENV.mainApi}/createdealtype`;
+    return this.http.post<any>(url,data,httpOptions)
           .pipe(
           tap(heroes => this.log(`get Category Test`)),
           catchError(this.handleError('get Category Test', []))

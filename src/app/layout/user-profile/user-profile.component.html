@@ -1,15 +1,71 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Profile'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header [heading]="'User-Profile'" [icon]="'fa-table'"></app-page-header>
     <div class="row">
         <div class="col col-xl-12 col-lg-12">
-            <div class="card mb-3">
+        <!-- *ngIf="page=='userDetailEdit'"
+*ngIf="page=='userDetail'" -->
+            <div class="card mb-3" *ngIf="page=='userDetail'">
                 <div class="card-header">
-                    Basic example
+                    Users Detail
+                </div>
+                <div class="card-body table-responsive">
+                    <div class="profile-image">
+                        <img [hidden]="nonEditableStatus" width="400px" height="400px" alt="no_image.jpg" [src]="image" class="img-thumbnail-profile" (click)="file.click()" />
+                        <img [hidden]="!nonEditableStatus" width="400px" height="400px" class="img-thumbnail-profile" [src]="image" alt="no_image.jpg">
+                        <div style="display: none;"><input type="file" accept="image/*" #file id="uploadImage" (change)="onUploadImage($event)"></div>
+                    </div>
+                    <fieldset>
+                        <div class="profile-data">
+                            <div class="table-responsive">
+                                <table class="card-body table">
+                                    <tbody>
+                                        <tr [class]="getClass(1)">
+                                            <th style="border-right: 2px solid #eee">First Name</th>
+                                            <td>{{userData.first_name}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(2)">
+                                            <th style="border-right: 2px solid #eee">Last Name</th>
+                                            <td>{{userData.last_name}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(3)">
+                                            <th style="border-right: 2px solid #eee">Email Id</th>
+                                            <td>{{userData.email}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(4)">
+                                            <th style="border-right: 2px solid #eee">Phone Number</th>
+                                            <td>{{userData.phone_no}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(5)">
+                                            <th style="border-right: 2px solid #eee">Prefrence</th>
+                                            <td>{{userData.prefrence?.pref_name}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(6)">
+                                            <th style="border-right: 2px solid #eee">Addresss</th>
+                                            <td>{{userData.address}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(7)">
+                                            <th style="border-right: 2px solid #eee">Description</th>
+                                            <td>{{userData.short_description}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(8)">
+                                            <th style="border-right: 2px solid #eee">Status</th>
+                                            <td>{{userData.status?'Active':'Inactive'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="card mb-3" *ngIf="page=='userDetailEdit'">
+                <div class="card-header">
+                    Edit User
                 </div>
                 <div class="card-body table-responsive">
                 <div class="profile-image">
-                    <img [hidden]="nonEditableStatus" width="400px" height="400px" alt="" [src]="image" class="img-thumbnail-profile" (click)="file.click()" />
-                    <img [hidden]="!nonEditableStatus" width="400px" height="400px" class="img-thumbnail-profile" [src]="image" alt="">
+                    <img [hidden]="nonEditableStatus" width="400px" height="400px" alt="no_image.jpg" [src]="image" class="img-thumbnail-profile" (click)="file.click()" />
+                    <img [hidden]="!nonEditableStatus" width="400px" height="400px" class="img-thumbnail-profile" [src]="image" alt="no_image.jpg">
                     <div style="display: none;"><input type="file" accept="image/*" #file id="uploadImage" (change)="onUploadImage($event)"></div>
                 </div>
                 <div class="profile-data">
@@ -22,59 +78,34 @@
                             <input class="form-control" type="text" placeholder="First Name" [disabled]="nonEditableStatus" #first_name="ngModel" name="first_name" [(ngModel)]="userData.first_name" required>
                         </div>
                         <p padding style="color:#D23839" [hidden]="nonEditableStatus || first_name.valid || !first_name.touched">First name required</p>
+
                         <div class="form-group">
                             <label for="disabledSelect">Last Name</label>
                             <input class="form-control" type="text" placeholder="Last Name" [disabled]="nonEditableStatus" #last_name="ngModel" name="last_name" [(ngModel)]="userData.last_name" required>
                         </div>
                         <p padding style="color:#D23839" [hidden]="nonEditableStatus || last_name.valid || !last_name.touched">Last name required</p>
-                        <div class="form-group">
-                            <label for="disabledSelect">User Name</label>
-                            <input class="form-control" type="text" placeholder="User Name" [disabled]="nonEditableStatus" #username="ngModel" name="username" [(ngModel)]="userData.username" required>
-                        </div>
-                        <p padding style="color:#D23839" [hidden]="nonEditableStatus || username.valid || !username.touched">Username required</p>
+
                         <div class="form-group">
                             <label for="disabledSelect">User Email</label>
-                            <input class="form-control" type="text" placeholder="User Email" [disabled]="nonEditableStatus" #user_email="ngModel" name="user_email" [(ngModel)]="userData.user_email" pattern="^[a-zA-Z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required>
+                            <input class="form-control" type="text" placeholder="User Email" disabled #email="ngModel" name="email" [(ngModel)]="userData.email" pattern="^[a-zA-Z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required>
                         </div>
-                        <p padding style="color:#D23839" [hidden]="nonEditableStatus || user_email.valid || !user_email.touched">Email required</p>
+                        <p padding style="color:#D23839" [hidden]="nonEditableStatus || email.valid || !email.touched">Email required</p>
+
+                        <div class="form-group">
+                            <label for="disabledSelect">Phone Number</label>
+                            <input class="form-control" type="text" placeholder="Phone Number" [disabled]="nonEditableStatus" #phone_no="ngModel" name="phone_no" [(ngModel)]="userData.phone_no" required>
+                        </div>
+                        <p padding style="color:#D23839" [hidden]="nonEditableStatus || phone_no.valid || !phone_no.touched">Email required</p>
+
+                        <div class="form-group">
+                            <label for="disabledSelect">Address</label>
+                            <input class="form-control" type="text" placeholder="Address" [disabled]="nonEditableStatus" #address="ngModel" name="address" [(ngModel)]="userData.address" required>
+                        </div>
+                        <p padding style="color:#D23839" [hidden]="nonEditableStatus || address.valid || !address.touched">Email required</p>
                     </fieldset>
                         <button *ngIf="nonEditableStatus" type="submit" class="profile-page-button btn btn-primary" layout-align="center end" (click)="onEdit()">Edit</button>
                         <button *ngIf="!nonEditableStatus" type="submit" class="profile-page-button btn btn-primary" (click)="submit()" [disabled]="profileForm.form.invalid">Submit</button>
 
-                </form>
-                </div>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-header">
-                    Password Reset
-                </div>
-                <div class="card-body table-responsive">
-                <div class="profile-image">
-                </div>
-                <div class="profile-data">
-                    <form role="form" #passwordForm="ngForm" novalidate>
-                        <div class="form-group">
-                            <label for="disabledSelect">Old Password</label>
-                            <input class="form-control" #oldPass="ngModel" [(ngModel)]="oldPassword" type="password" placeholder="Old Password" name="oldPassword" minlength="6" (input)="oldPassword==userData.decoded_password?oldPasswordCheck=true:oldPasswordCheck=false" required>
-                        </div>
-                        <p padding [hidden]="!oldPasswordCheck || oldPass.valid || !oldPass.touched" style="color:#D23839" >Password required</p>
-                        <p padding [hidden]="oldPasswordCheck || !oldPass.touched" style="color:#D23839" >Wrong Password</p>
-
-                        <div class="form-group">
-                            <label for="disabledSelect">New Password</label>
-                            <input class="form-control" #newPass="ngModel" [(ngModel)]="newPassword" type="password" placeholder="New Password" name="newPassword" minlength="6" required>
-                        </div>
-                        <p padding [hidden]="newPass.valid || !newPass.touched" style="color:#D23839" >Password required</p>
-
-                        <div class="form-group">
-                            <label for="disabledSelect">Confirm Password</label>
-                            <input class="form-control" #confirmPass="ngModel" [(ngModel)]="confirmPassword" (input)="newPassword==confirmPassword?confirmPasswordCheck=true:confirmPasswordCheck=false" type="password" placeholder="Confirm Password" name="confirmPassword" minlength="6" required>
-                        </div>
-                        <p padding [hidden]="!confirmPasswordCheck || confirmPass.valid || !confirmPass.touched" style="color:#D23839" >Password required</p>
-                        <p padding [hidden]="confirmPasswordCheck || !confirmPass.touched" style="color:#D23839" >Please check your Password</p>
-
-                        <button type="submit" (click)="changePassword(passwordForm)" [disabled]="!confirmPasswordCheck || !oldPasswordCheck || passwordForm.form.invalid" class="profile-page-button btn btn-primary">Submit</button>
                 </form>
                 </div>
                 </div>

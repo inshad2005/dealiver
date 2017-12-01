@@ -15,7 +15,7 @@ import { ENV } from '../../env'
 export class ProfileComponent implements OnInit {
 	nonEditableStatus:boolean=true
     userData;
-    image='assets/images/400x400.png';
+    image=ENV.imgApi+'no_image.jpg';
     imagechanged:boolean=false;
     imageType;
     oldPassword;
@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.userData=this.userService.user.admin;
-        this.image=ENV.mainApi+'/www/images/'+this.userService.user.admin.image;
+        this.image=ENV.imgApi+this.userService.user.admin.image;
         console.log(this.userData)
     }
     onStatusChange(){}
@@ -52,6 +52,7 @@ export class ProfileComponent implements OnInit {
                 this.toastr.info('Password updated successfully' ,'Success',{toastLife: 3000, showCloseButton: true});
                 this.userService.user.admin=data.data;
                 this.userData=this.userService.user.admin;
+                localStorage['user'] = JSON.stringify(data.data);
             }else{
                 this.toastr.error('Something went wrong, Please try again' ,'Error',{toastLife: 3000, showCloseButton: true});
             }

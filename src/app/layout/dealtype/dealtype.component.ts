@@ -4,21 +4,25 @@ import { routerTransition } from '../../router.animations';
 import { AdminService } from '../../shared/services/admin/admin.service'
 import { UserService }from '../../user.service'
 @Component({
-    selector: 'app-tables',
-    templateUrl: './tables.component.html',
-    styleUrls: ['./tables.component.scss'],
+    selector: 'app-dealtype',
+    templateUrl: './dealtype.component.html',
+    styleUrls: ['./dealtype.component.scss'],
     animations: [routerTransition()]
 })
-export class TablesComponent implements OnInit {
+export class DealtypeComponent implements OnInit {
 	usersDataBackup
 	pageEvent;
 	users=[];
 	listIndex=1;
 	listSize=10
-	pageIndex=0  
-	pageSize=10
-    searchInput;
-    usersDataBackup1;
+	pageIndex=0;  
+	pageSize=5;
+  searchInput;
+  usersDataBackup1;
+  edit_type=0;
+  input_value='';
+  add_new:boolean=false;
+  new_type_value='';
     constructor(
         private adminService:AdminService,
         public router: Router,
@@ -29,7 +33,7 @@ export class TablesComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.adminService.getUserDetail().subscribe((data)=>{
+        this.adminService.getDealTypes().subscribe((data)=>{
             if(data.response){
                 this.usersDataBackup=data.data
                 this.usersDataBackup1=data.data
@@ -70,7 +74,7 @@ export class TablesComponent implements OnInit {
     }
     onStatusChange(data){
     	console.log(data.id);
-    	this.adminService.changeUserStatus(data.id).subscribe((data)=>{
+    	this.adminService.changeDealtypeStatus(data.id).subscribe((data)=>{
     		if(data.response){
     		}else{
     			alert(data.message)
@@ -81,7 +85,7 @@ export class TablesComponent implements OnInit {
         pager.pageIndex=0;
         this.usersDataBackup=[];
         this.usersDataBackup=this.usersDataBackup1.filter( it => {
-            let b = it.first_name+' '+it.last_name
+            let b = it.type_name
             return b.toLowerCase().includes(this.searchInput.toLowerCase())
         });
         this.pageIndex=0;
@@ -93,38 +97,6 @@ export class TablesComponent implements OnInit {
             if(this.usersDataBackup.length-1<i+1){break;}
         }
     }
-    // onsearchuser(){
-      // let searchData=this.searchInput.trim()
-      // let searchArray=searchData
-      // console.log(searchArray)
-      // if (searchArray.legth==1) {
-      //    if (searchData == '') {
-      //         this.users = this.usersDataBackup;
-      //         return;
-      //    }
-      //    let ev= searchData
-      //    if (ev && ev.trim() != '') {
-      //     this.users = this.usersDataBackup.filter((value) => {
-      //         return (value.first_name.toUpperCase().indexOf(ev.toUpperCase()) > -1 || value.last_name.toUpperCase().indexOf(ev.toUpperCase()) > -1);
-           
-      //    })
-      //   }
-      // }
-      //else{
-      //      if (searchData == '') {
-      //         this.users = this.usersDataBackup;
-      //         return;
-      //    }
-      //    let ev  = searchArray[0]
-      //    let ev2 = searchArray[1]
-      //    if (ev && ev.trim() != '' || ev2 && ev2.trim() != '') {
-      //     this.users = this.usersDataBackup.filter((value) => {
-      //         return (value.first_name.toUpperCase().indexOf(ev.toUpperCase()) > -1 || value.last_name.toUpperCase().indexOf(ev2.toUpperCase()) > -1);
-           
-      //    })
-      //   }
-      // }
-  // }
     getClass(i){
     	if (i%2==0){
     		return 'table-danger'
@@ -139,15 +111,59 @@ export class TablesComponent implements OnInit {
     		return false
     	}
     }
-
-    onUserDetails(user){
-     this.userService.user.user=user;
-     this.userService.user.actionFlag="userDetail";
+    onUserEdit(deal_type){
+     this.userService.user.user=deal_type;
+     this.userService.user.actionFlag="deal_type";
      this.router.navigate(['/user-profile'])
     }
-    onUserEdit(user){
-     this.userService.user.user=user;
-     this.userService.user.actionFlag="userDetailEdit";
-     this.router.navigate(['/user-profile'])
+    createdealtype(pager){
+      this.adminService.createdealtype({type_name:this.new_type_value}).subscribe(data=>{
+        if(data.response){
+          this.usersDataBackup1;
+          this.users=[];
+          this.usersDataBackup=[];
+          this.pageIndex=0;  
+          this.pageSize=5;
+          pager.pageIndex=0;
+          this.new_type_value='';
+          this.ngOnInit();
+        }
+        else{
+
+        }
+      })
+    }
+    check_valid(){
+      if(this.new_type_value==''){
+        return true
+      }
+      else{
+        return false;
+      }
+    }
+    updateDeal(input_value,user_id){
+      console.log(input_value,user_id)
+      if(input_value!='' && input_value!=null){
+        this.adminService.updateDealType({value:input_value,id:user_id}).subscribe((data)=>{
+          if(data.response){
+            for(let i=0;i<this.usersDataBackup.length;i++){
+              if(this.usersDataBackup[i].id==data.data.id){
+                this.usersDataBackup[i].type_name=data.data.type_name
+              }
+            }
+            for(let i=0;i<this.usersDataBackup1.length;i++){
+              if(this.usersDataBackup1[i].id==data.data.id){
+                this.usersDataBackup1[i].type_name=data.data.type_name
+              }
+            }
+            for(let i=0;i<this.users.length;i++){
+              if(this.users[i].id==data.data.id){
+                this.users[i].type_name=data.data.type_name
+              }
+            }
+          }else{}
+        })
+      }
+      this.input_value='';
     }
 }
