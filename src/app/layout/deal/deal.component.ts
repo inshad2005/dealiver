@@ -195,7 +195,7 @@ export class DealComponent implements OnInit {
 
     openDialog(deal){
        let dialogRef = this.dialog.open(DealDetails, {
-      width: '1200px',
+      width: '1000px',
       data: { deal: deal}
     });
 
@@ -218,18 +218,19 @@ export class DealComponent implements OnInit {
 })
 
 export class DealDetails {
-   
-
+   deal
+    
   constructor(
     public dialogRef: MatDialogRef<DealDetails>,
     @Inject(MAT_DIALOG_DATA) public data: any,
         private router: Router,
         private adminService: AdminService,
         public dialog: MatDialog) {
+    this.deal=this.data.deal
        }
 
   onYesClick(): void {
-    this.dialogRef.close(this.data.admin);
+    this.dialogRef.close(this.data.deal);
     // this.homePage.onDelete(this.data.admin)
   }
    onNoClick(): void {

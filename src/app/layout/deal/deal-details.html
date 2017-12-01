@@ -1,42 +1,95 @@
-                    <fieldset>
+<div class="modal-header">
+    <h4 class="modal-title" >Content View <span class="pull-right"><a (click)="onClosed()"><i class="fa fa-times"></i></a></span> </h4>
+</div>
+<div class="modal-body">
+    <fieldset>
                         <div class="profile-data">
                             <div class="table-responsive">
                                 <table class="card-body table">
                                     <tbody>
                                         <tr [class]="getClass(1)">
-                                            <th style="border-right: 2px solid #eee">First Name</th>
-                                            <td></td>
+                                            <th style="border-right: 2px solid #eee">deal_title</th>
+                                            <td>{{deal.deal_title}}</td>
                                         </tr>
                                         <tr [class]="getClass(2)">
-                                            <th style="border-right: 2px solid #eee">Last Name</th>
-                                            <td></td>
+                                            <th style="border-right: 2px solid #eee">Deal Type</th>
+                                            <td>{{deal.deal_type}}</td>
                                         </tr>
                                         <tr [class]="getClass(3)">
-                                            <th style="border-right: 2px solid #eee">Email Id</th>
-                                            <td></td>
+                                            <th style="border-right: 2px solid #eee">Price</th>
+                                            <td>{{deal.price}}</td>
                                         </tr>
                                         <tr [class]="getClass(4)">
-                                            <th style="border-right: 2px solid #eee">Phone Number</th>
-                                            <td></td>
+                                            <th style="border-right: 2px solid #eee">price_per_sqft</th>
+                                            <td>{{deal.price_per_sqft}}</td>
                                         </tr>
                                         <tr [class]="getClass(5)">
-                                            <th style="border-right: 2px solid #eee">Prefrence</th>
-                                            <td></td>
+                                            <th style="border-right: 2px solid #eee">price_per_unit</th>
+                                            <td>{{deal.price_per_unit}}</td>
                                         </tr>
                                         <tr [class]="getClass(6)">
-                                            <th style="border-right: 2px solid #eee">Addresss</th>
-                                            <td></td>
+                                            <th style="border-right: 2px solid #eee">lot_size</th>
+                                            <td>{{deal.lot_size}}</td>
                                         </tr>
                                         <tr [class]="getClass(7)">
-                                            <th style="border-right: 2px solid #eee">Description</th>
-                                            <td></td>
+                                            <th style="border-right: 2px solid #eee">rsf</th>
+                                            <td>{{deal.rsf}}</td>
                                         </tr>
                                         <tr [class]="getClass(8)">
-                                            <th style="border-right: 2px solid #eee">Status</th>
-                                            <td></td>
+                                            <th style="border-right: 2px solid #eee">cap</th>
+                                            <td>{{deal.cap}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(9)">
+                                            <th style="border-right: 2px solid #eee">grm</th>
+                                            <td>{{deal.grm}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(10)">
+                                            <th style="border-right: 2px solid #eee">year_built</th>
+                                            <td>{{deal.year_built}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(11)">
+                                            <th style="border-right: 2px solid #eee">description</th>
+                                            <td>{{deal.description}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(12)">
+                                            <th style="border-right: 2px solid #eee">address</th>
+                                            <td>{{deal.address}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(13)">
+                                            <th style="border-right: 2px solid #eee">status</th>
+                                            <td>{{deal.status}}</td>
+                                        </tr>
+                                        <tr [class]="getClass(14)">
+                                            <th style="border-right: 2px solid #eee">attachments</th>
+                                            <td>
+                                                <div *ngIf="deal.attachments.length>0 && deal.attachments">
+                                                    <div *ngFor="let attach of  deal.attachments">{{attach.attachment_name}}</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr [class]="getClass(15)">
+                                            <th style="border-right: 2px solid #eee">images</th>
+                                            <td>
+                                                <div *ngIf="deal.images.length>0 && deal.images">
+                                                    <div *ngFor="let attach of  deal.images">
+                                                    {{attach.image_name}}</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr [class]="getClass(16)">
+                                            <th style="border-right: 2px solid #eee">share</th>
+                                            <td>
+                                                <div *ngIf="deal.share.length>0 && deal.share">
+                                                    <div *ngFor="let attach of  deal.share">
+                                                    {{attach.reciver.first_name}} {{attach.reciver.last_name}}</div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </fieldset>
+</div>
+
+                    

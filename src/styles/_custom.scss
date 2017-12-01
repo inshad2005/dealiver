@@ -79,3 +79,12 @@
 .user-button {
   color: #000;
 }
+
+.cdk-overlay-pane {
+  overflow: auto;
+  max-height: 100%;
+}
+
+.modal-body.cus-height{
+  max-height: 85vh;
+}
