@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.userData=this.userService.user;
-        this.image=ENV.mainApi+'/www/images/'+this.userService.user.image;
+        this.image=ENV.mainApi+'/www/images/'+this.userService.user.admin.image;
         console.log(this.userData)
     }
     onStatusChange(){}
