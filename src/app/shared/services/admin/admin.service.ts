@@ -111,6 +111,16 @@ export class AdminService {
         
     );
   }
+
+  getDeal(): Observable<any> {
+    const url = `${ENV.mainApi}/deals`;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get deal Test`)),
+          catchError(this.handleError('get deal Test', []))
+        
+    );
+  }
   /**
    * Handle Http operation that failed.
    * Let the app continue.

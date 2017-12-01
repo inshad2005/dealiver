@@ -39,4 +39,4 @@ export const PROD: Environment = {
     angularProd: false
 };
 
-export const ENV: Environment =LOCAL;
+export const ENV: Environment =PROD;
