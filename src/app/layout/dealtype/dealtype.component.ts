@@ -66,6 +66,7 @@ export class DealtypeComponent implements OnInit {
       let isAsc = sort.direction == 'asc';
       switch (sort.active) {
         case 'type_name': return compare(a.type_name, b.type_name, isAsc);
+        case 'status': return compare(a.status, b.status, isAsc);
         default: return 0;
       }
     });

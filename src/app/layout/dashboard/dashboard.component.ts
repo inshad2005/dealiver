@@ -2,6 +2,8 @@ import { Component, OnInit,ViewContainerRef  } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { ToastsManager , Toast} from 'ng2-toastr';
 import { UserService } from '../../user.service'
+import { AdminService } from '../../shared/services/admin/admin.service'
+import { forkJoin } from "rxjs/observable/forkJoin";
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -11,9 +13,20 @@ import { UserService } from '../../user.service'
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
-
+    result
+    user
+deal
+contactus
+faq
     constructor(private userService:UserService,public toastr: ToastsManager, 
-         vcr: ViewContainerRef,) {
+         vcr: ViewContainerRef,private adminService:AdminService,) {
+        this.result={}
+    //     forkJoin([this.adminService.getUserDetail(), this.adminService.getDeal(),this.adminService.getContactUs(),this.adminService.getFaq()]).subscribe(results => {
+    //      this.result.user=results[0];
+    //      this.result.deal=results[1]
+    //      this.result.contactus=results[2]
+    //      this.result.faq=results[3]
+    // });
         this.toastr.setRootViewContainerRef(vcr);
         this.sliders.push(
             {
@@ -56,7 +69,15 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+        forkJoin([this.adminService.getUserDetail(), this.adminService.getDeal(),this.adminService.getContactUs(),this.adminService.getFaq()]).subscribe(results => {
+         this.user=results[0].data;
+         this.deal=results[1].data
+         this.contactus=results[2].data
+         this.faq=results[3].data
+
+
+        //alert(this.user.length)
+    });
         
     }
 

@@ -16,16 +16,17 @@
     <hr>
     <div class="row">
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
+            <app-stat [bgClass]="'primary'" [icon]="'fa-users'" [count]="user.length" [label]="'Users!'" ></app-stat>
+            
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
+            <app-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="deal.length" [label]="'Deals!'" ></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
+            <app-stat [bgClass]="'success'" [icon]="'fa-envelope'" [count]="contactus.length" [label]="'Contact Us!'" ></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
+            <app-stat [bgClass]="'danger'" [icon]="'fa-question-circle'" [count]="faq.length" [label]="'FAQ!'"></app-stat>
         </div>
     </div>
     <hr />

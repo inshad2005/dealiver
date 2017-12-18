@@ -67,6 +67,7 @@ export class TablesComponent implements OnInit {
         case 'email': return compare(a.email, b.email, isAsc);
         case 'phone_no': return compare(a.phone_no, b.phone_no, isAsc);
         case 'pref_name': return compare(a.pref_name, b.pref_name, isAsc);
+        case 'status': return compare(a.status, b.status, isAsc);
         default: return 0;
       }
     });

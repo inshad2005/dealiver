@@ -69,6 +69,7 @@ export class ContactusComponent implements OnInit {
         case 'email': return compare(a.email, b.email, isAsc);
         case 'subject': return compare(a.subject, b.subject, isAsc);
         case 'message': return compare(a.message, b.message, isAsc);
+        case 'status': return compare(a.status, b.status, isAsc);
         default: return 0;
       }
     });
@@ -107,7 +108,7 @@ export class ContactusComponent implements OnInit {
         pager.pageIndex=0;
         this.usersDataBackup=[];
         this.usersDataBackup=this.usersDataBackup1.filter( it => {
-            let b = it.type_name
+            let b = it.subject
             return b.toLowerCase().includes(this.searchInput.toLowerCase())
         });
         this.pageIndex=0;

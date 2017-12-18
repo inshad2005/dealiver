@@ -113,11 +113,12 @@ export class DealComponent implements OnInit {
       switch (sort.active) {
         case 'deal_title': return compare(a.deal_title, b.deal_title, isAsc);
         case 'deal_type': return compare(a.deal_type, b.deal_type, isAsc);
-        case 'price': return compare(a.price, b.price, isAsc);
-        case 'rsf': return compare(a.rsf, b.rsf, isAsc);
-        case 'cap': return compare(a.cap, b.cap, isAsc);
-        case 'grm': return compare(a.grm, b.grm, isAsc);
-        case 'lot_size': return compare(a.lot_size, b.lot_size, isAsc);
+        case 'price': return compare(+a.price, +b.price, isAsc);
+        case 'rsf': return compare(+a.rsf, +b.rsf, isAsc);
+        case 'cap': return compare(+a.cap, +b.cap, isAsc);
+        case 'grm': return compare(+a.grm, +b.grm, isAsc);
+        case 'lot_size': return compare(+a.lot_size, +b.lot_size, isAsc);
+        case 'status': return compare(+a.status, +b.status, isAsc);
         default: return 0;
       }
     });
@@ -133,6 +134,8 @@ export class DealComponent implements OnInit {
       let isAsc = sort.direction == 'asc';
       switch (sort.active) {
         case 'text': return compare(a.text, b.text, isAsc);
+        case 'image': return compare(a.image, b.image, isAsc);
+        case 'status': return compare(a.status, b.status, isAsc);
         default: return 0;
       }
     });

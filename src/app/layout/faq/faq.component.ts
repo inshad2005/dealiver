@@ -80,6 +80,7 @@ export class FaqComponent implements OnInit {
       switch (sort.active) {
         case 'question': return compare(a.question, b.question, isAsc);
         case 'answer': return compare(a.answer, b.answer, isAsc);
+        case 'status': return compare(a.status, b.status, isAsc);
         default: return 0;
       }
     });
@@ -118,7 +119,7 @@ export class FaqComponent implements OnInit {
         pager.pageIndex=0;
         this.usersDataBackup=[];
         this.usersDataBackup=this.usersDataBackup1.filter( it => {
-            let b = it.type_name
+            let b = it.question
             return b.toLowerCase().includes(this.searchInput.toLowerCase())
         });
         this.pageIndex=0;
