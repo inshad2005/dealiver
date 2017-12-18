@@ -5,9 +5,10 @@ import { DealtypeRoutingModule } from './dealtype-routing.module';
 import { DealtypeComponent } from './dealtype.component';
 import { PageHeaderModule } from './../../shared';
 import { AdminService } from '../../shared/services/admin/admin.service'
+import {MatSortModule} from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material';
 @NgModule({
-    imports: [CommonModule, DealtypeRoutingModule, PageHeaderModule, FormsModule, MatPaginatorModule],
+    imports: [CommonModule, DealtypeRoutingModule, PageHeaderModule, FormsModule, MatPaginatorModule,MatSortModule],
     declarations: [DealtypeComponent],
     providers:[AdminService]
 })

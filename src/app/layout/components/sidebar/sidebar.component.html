@@ -7,16 +7,37 @@
             <i class="fa fa-fw fa-user"></i>&nbsp;User Management
         </a>
         <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('pages')">
+            <a class="list-group-item" (click)="addExpandClass('deal')">
                 <span><i class="fa fa-cubes"></i>&nbsp;Deal Management</span>
             </a>
-            <li class="nested" [class.expand]="showMenu === 'pages'">
+            <li class="nested" [class.expand]="showMenu === 'deal'">
                 <ul class="submenu">
                     <li>
                         <a [routerLink]="['/dealtype']" [routerLinkActive]="['router-link-active']"><span>Deal Type</span></a>
                     </li>
                     <li>
                         <a [routerLink]="['/deal']" [routerLinkActive]="['router-link-active']"><span>Deals</span></a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <span><i class="fa fa-sliders"></i>&nbsp;General Management</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['/contactus']" [routerLinkActive]="['router-link-active']"><span>Contact Us</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/aboutus']" [routerLinkActive]="['router-link-active']"><span>About Us</span></a>
+                    </li>
+                     <li>
+                        <a [routerLink]="['/faq']" [routerLinkActive]="['router-link-active']"><span>Faq</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/termConditions']" [routerLinkActive]="['router-link-active']"><span>Term and Conditions</span></a>
                     </li>
                 </ul>
             </li>

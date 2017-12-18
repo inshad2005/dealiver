@@ -3,6 +3,8 @@ const HTTP_TIMEOUT: number = 60000;
 export interface Environment {
     mainApi: string;
     imgApi:string;
+    dealImg:string;
+    dealDoc:string;
     analytics?: string;
     timeout: number;
     debug: boolean;
@@ -13,6 +15,8 @@ export interface Environment {
 export const LOCAL: Environment = {
     mainApi: 'http://127.0.0.1:3002',
     imgApi:'http://18.220.217.121/dealiver-rest-apis/public/img/profile_imgs/',
+    dealImg:'http://18.220.217.121/dealiver-rest-apis/public/img/deals_images/',
+    dealDoc:'http://18.220.217.121/dealiver-rest-apis/public/img/deals_attachments/',
     timeout: HTTP_TIMEOUT,
     debug: true,
     bypass: true,
@@ -22,6 +26,8 @@ export const LOCAL: Environment = {
 export const DEV: Environment = {
     mainApi: 'http://52.15.178.19:3001/api/',
     imgApi:'http://18.220.217.121/dealiver-rest-apis/public/img/profile_imgs/',
+    dealImg:'http://18.220.217.121/dealiver-rest-apis/public/img/deals_images/',
+    dealDoc:'http://18.220.217.121/dealiver-rest-apis/public/img/deals_attachments/',
     timeout: HTTP_TIMEOUT,
     debug: true,
     bypass: false,
@@ -33,10 +39,12 @@ export const DEV: Environment = {
 export const PROD: Environment = {
     mainApi: 'http://18.220.217.121:3002',
     imgApi:'http://18.220.217.121/dealiver-rest-apis/public/img/profile_imgs/',
+    dealImg:'http://18.220.217.121/dealiver-rest-apis/public/img/deals_images/',
+    dealDoc:'http://18.220.217.121/dealiver-rest-apis/public/img/deals_attachments/',
     timeout: HTTP_TIMEOUT,
     debug: false,
     bypass: false,
     angularProd: false
 };
 
-export const ENV: Environment =PROD;
+export const ENV: Environment = PROD;

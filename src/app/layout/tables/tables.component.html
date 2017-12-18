@@ -18,20 +18,20 @@
                     </div>
                 </nav>
                <div class="table-responsive">
-                   <table class="card-body table">
+                   <table matSort (matSortChange)="sortData($event)" class="card-body table">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>E-mail</th>
-                        <th>Phone Number</th>
-                        <th>Prefrence</th>
+                        <th mat-sort-header="first_name">Name</th>
+                        <th mat-sort-header="email">E-mail</th>
+                        <th mat-sort-header="phone_no">Phone Number</th>
+                        <th mat-sort-header="pref_name">Prefrence</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody *ngIf="usersDataBackup && users">
-                        <tr *ngFor="let user of users;let i = index "  [class]="getClass(i)">
+                    <tbody *ngIf="usersDataBackup && users && sortedData">
+                        <tr *ngFor="let user of sortedData;let i = index "  [class]="getClass(i)">
                             <th scope="row">{{(pageIndex*pageSize)+i+1}}</th>
                             <td>{{user.first_name}} {{user.last_name}}</td>
                             <td>{{user.email}}</td>

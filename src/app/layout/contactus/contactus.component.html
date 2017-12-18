@@ -1,5 +1,8 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Deal Type Management'" [icon]="'fa-cubes'"></app-page-header>
+    <app-page-header [heading]="'General Settings'" [icon]="'fa-sliders'"></app-page-header>
+    <h4 _ngcontent-c7="" class="page-header">
+            Contact Us
+    </h4>
     <div class="row">
         <div class="col col-xl-12 col-lg-12">
             <div class="card mb-6">
@@ -7,13 +10,6 @@
                     <div class="collapse navbar-collapse">
                         <div class="mr-auto">
                             <span>
-                                <a *ngIf="!add_new" (click)="add_new=!add_new">
-                                    <span><i class="fa fa-plus"></i></span>
-                                </a>
-                                <div *ngIf="add_new">
-                                    <input class="form-control table-input-width" type="text" placeholder="Enter Name" name="type_value" [(ngModel)]="new_type_value">
-                                    <button (click)="add_new=!add_new;createdealtype(pager)" [disabled]="check_valid()" type="submit" class="profile-page-button btn btn-primary add-new-margin-left">Submit</button>
-                                </div>
                             </span>
                         </div>
                         <form class="form-inline my-2 my-lg-0 right">
@@ -29,37 +25,39 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th mat-sort-header="type_name">Type Name</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th mat-sort-header="name">Name</th>
+                        <th mat-sort-header="email">email</th>
+                        <th mat-sort-header="subject">subject</th>
+                        <th mat-sort-header="message">message</th>
+                        <th>status</th>
+                        <!-- <th>created</th> -->
                     </tr>
                     </thead>
                     <tbody *ngIf="usersDataBackup && users && sortedData">
                         <tr *ngFor="let user of sortedData;let i = index "  [class]="getClass(i)">
                             <th scope="row">{{(pageIndex*pageSize)+i+1}}</th>
                             <td >
-                                <span [hidden]="edit_type==i+1">{{user.type_name}}</span>
-                                <div [hidden]="edit_type!=i+1">
-                                    <input class="form-control table-input-width" type="text" placeholder="Name" name="first_name" [(ngModel)]="input_value" >
-                                    <label style="margin:5px"><a *ngIf="edit_type==i+1" class="fa fa-check fa-lg user-button" (click)="edit_type=0;updateDeal(input_value,user.id)"></a></label>
-                                </div>
+                                <span>{{user.name}}</span>
                             </td>
                             <td >
-                                 <span class="cus-switch">
+                                <span>{{user.email}}</span>
+                            </td>
+                            <td >
+                                <span>{{user.subject}}</span>
+                            </td>
+                            <td >
+                                <span>{{user.message}}</span>
+                            </td>
+                            <td >
+                                <span class="cus-switch">
                                     <label class="switch m-b-0">
                                         <input type="checkbox" [(ngModel)]="user.status" (change)="onStatusChange(user);">
                                         <span class="slider round"></span>
                                     </label>
                                 </span>
                             </td>
-                            <td >
-                                <a *ngIf="edit_type!=i+1" href="javascript:void(0)" class="fa fa-pencil-square-o fa-lg user-button" (click)="edit_type=i+1"></a>
-                                <a *ngIf="edit_type==i+1" class="fa fa-check fa-lg user-button" (click)="edit_type=0;updateDeal(input_value,user.id)"></a>
-                            </td>
                         </tr>
-
                     </tbody>
-
                 </table>
                </div>
                <mat-paginator #pager [length]="usersDataBackup.length"

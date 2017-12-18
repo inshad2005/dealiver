@@ -13,30 +13,30 @@
                         </div>
                         <form class="form-inline my-2 my-lg-0 right">
                             <div class="form-inline my-2 my-lg-0 right">
-                                <input (input)="searchUser(pager)" [(ngModel)]="searchInput" name='searchInput' class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                                <input (input)="searchUser(pager,pager2)" [(ngModel)]="searchInput" name='searchInput' class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                                 <!-- <button class="btn btn-outline-success my-2 my-sm-0" >Search</button> -->
                             </div>
                         </form>
                     </div>
                 </nav>
                <div class="table-responsive" *ngIf="table">
-                   <table class="card-body table">
+                   <table matSort (matSortChange)="sortData($event)" class="card-body table">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Deal Title</th>
-                            <th>Deal Type</th>
-                            <th>Price</th>
-                            <th>RSF</th>
-                            <th>CAP</th>
-                            <th>GRM</th>
-                            <th>Lot Size</th>
+                            <th mat-sort-header="deal_title">Deal Title</th>
+                            <th mat-sort-header="deal_type">Deal Type</th>
+                            <th mat-sort-header="price">Price</th>
+                            <th mat-sort-header="rsf">RSF</th>
+                            <th mat-sort-header="cap">CAP</th>
+                            <th mat-sort-header="grm">GRM</th>
+                            <th mat-sort-header="lot_size">Lot Size</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody *ngIf="dealsDataBackup && deals">
-                            <tr *ngFor="let deal of deals;let i = index "  [class]="getClass(i)">
+                        <tbody *ngIf="dealsDataBackup && deals && sortedData">
+                            <tr *ngFor="let deal of sortedData;let i = index "  [class]="getClass(i)">
                                 <th scope="row">{{(pageIndex*pageSize)+i+1}}</th>
                                 <td >
                                     <span >{{deal.deal_title}}</span>
@@ -76,7 +76,7 @@
                                     </span>
                                 </td>
                                 <td >
-                                    <a  href="javascript:void(0)" class="fa fa-trash fa-fw fa-lg user-button" (click)="edit_type=i+1"></a>
+                                    <a  href="javascript:void(0)" class="fa fa-trash fa-fw fa-lg user-button" (click)="openConfirm(deal)"></a>
                                     <a  href="javascript:void(0)" class="fa fa-eye fa-fw fa-lg user-button" (click)="openDialog(deal)"></a>
                                 </td>
                             </tr>
@@ -91,25 +91,25 @@
                </div>
                
                 <div class="table-responsive" *ngIf="!table">
-                   <table class="card-body table" >
+                   <table matSort (matSortChange)="sortData1($event)" class="card-body table" >
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Text</th>
+                            <th mat-sort-header="text">Text</th>
                             <th>Image</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody *ngIf="dealsDataBackupType2 && dealsType2">
-                            <tr *ngFor="let deal of dealsType2;let i = index "  [class]="getClass(i)">
+                        <tbody *ngIf="dealsDataBackupType2 && dealsType2 && sortedData1">
+                            <tr *ngFor="let deal of sortedData1;let i = index "  [class]="getClass(i)">
                                 <th scope="row">{{(pageIndex2*pageSize2)+i+1}}</th>
                                 <td >
                                     <span >{{deal.text}}</span>
                                     
                                 </td>
                                 <td >
-                                    <div *ngIf="deal.image"><img [src]="deal.image"  alt="image can't load"></div>
+                                    <div *ngIf="deal" ><img [src]="check_img(deal.image)" width="150px" alt="image can't load"></div>
                                     
                                 </td>
                                 
@@ -122,7 +122,7 @@
                                     </span>
                                 </td>
                                 <td >
-                                    <a  href="javascript:void(0)" class="fa fa-trash fa-fw fa-lg user-button" (click)="edit_type=i+1"></a>
+                                    <a  href="javascript:void(0)" class="fa fa-trash fa-fw fa-lg user-button" (click)="openConfirm(deal)"></a>
                                 </td>
                             </tr>
 

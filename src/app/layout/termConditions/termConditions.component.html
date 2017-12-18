@@ -1,0 +1,22 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'General Settings'" [icon]="'fa-sliders'"></app-page-header>
+    <h4 _ngcontent-c7="" class="page-header">
+            Tern and Conditions
+    </h4>
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-6">
+                <div class="card-body table-responsive">
+                    <form role="form">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea [(ngModel)]="data.description" (input)="enable=false" name="data" class="form-control" rows="6" placeholder="Enter something..."></textarea>
+                        </div>
+                        <button *ngIf="!enable" type="submit" class="profile-page-button btn btn-primary" (click)="save()">Submit</button> 
+                        <button *ngIf="enable" disabled type="submit" class="profile-page-button btn btn-primary" (click)="save()">Submit</button>     
+                    </form>
+                </div>      
+            </div>
+        </div>
+    </div>
+</div>

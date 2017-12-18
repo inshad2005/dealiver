@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { routerTransition } from '../../router.animations';
 import { AdminService } from '../../shared/services/admin/admin.service'
 import { UserService }from '../../user.service'
+import {Sort} from '@angular/material';
 @Component({
     selector: 'app-dealtype',
     templateUrl: './dealtype.component.html',
@@ -23,6 +24,7 @@ export class DealtypeComponent implements OnInit {
   input_value='';
   add_new:boolean=false;
   new_type_value='';
+  sortedData;
     constructor(
         private adminService:AdminService,
         public router: Router,
@@ -46,12 +48,28 @@ export class DealtypeComponent implements OnInit {
                 }
                 for (var i = this.pageIndex*this.pageSize; i<(this.pageIndex*this.pageSize+this.pageSize); i++) {
                  this.users.push(this.usersDataBackup[i])
+                 this.sortedData = this.users.slice();
                 }
             }else{
                 alert(data.message)
             }
         })
     }
+    sortData(sort: Sort) {
+    const data = this.users.slice();
+    if (!sort.active || sort.direction == '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      let isAsc = sort.direction == 'asc';
+      switch (sort.active) {
+        case 'type_name': return compare(a.type_name, b.type_name, isAsc);
+        default: return 0;
+      }
+    });
+  }
     check(i){
     	if(i>this.listIndex*this.listSize){
     	return false;
@@ -68,6 +86,8 @@ export class DealtypeComponent implements OnInit {
         		break;
         	}else{
               this.users.push(this.usersDataBackup[i])
+              this.sortedData = this.users.slice();
+
             }
 	   }
      console.log(event)
@@ -93,7 +113,10 @@ export class DealtypeComponent implements OnInit {
         this.users=[];
         for (var i = this.pageIndex*this.pageSize; i<(this.pageIndex*this.pageSize+this.pageSize); i++) {
             if(i==this.usersDataBackup.length){break;
-            }else{this.users.push(this.usersDataBackup[i])}
+            }else{
+              this.users.push(this.usersDataBackup[i])
+              this.sortedData = this.users.slice();
+            }
             if(this.usersDataBackup.length-1<i+1){break;}
         }
     }
@@ -121,6 +144,7 @@ export class DealtypeComponent implements OnInit {
         if(data.response){
           this.usersDataBackup1;
           this.users=[];
+          this.sortedData = []
           this.usersDataBackup=[];
           this.pageIndex=0;  
           this.pageSize=5;
@@ -158,7 +182,8 @@ export class DealtypeComponent implements OnInit {
             }
             for(let i=0;i<this.users.length;i++){
               if(this.users[i].id==data.data.id){
-                this.users[i].type_name=data.data.type_name
+                this.users[i].type_name=data.data.type_name;
+                this.sortedData = this.users.slice();
               }
             }
           }else{}
@@ -166,4 +191,7 @@ export class DealtypeComponent implements OnInit {
       }
       this.input_value='';
     }
+}
+function compare(a, b, isAsc) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

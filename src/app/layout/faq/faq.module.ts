@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule} from '@angular/forms';
-import { TablesRoutingModule } from './tables-routing.module';
-import { TablesComponent } from './tables.component';
+import { FaqRoutingModule } from './faq-routing.module';
+import { FaqComponent } from './faq.component';
 import { PageHeaderModule } from './../../shared';
 import { AdminService } from '../../shared/services/admin/admin.service'
-import {MatSortModule} from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material';
+import {MatSortModule} from '@angular/material/sort';
 @NgModule({
-    imports: [CommonModule, TablesRoutingModule, PageHeaderModule, FormsModule, MatPaginatorModule,MatSortModule],
-    declarations: [TablesComponent],
+    imports: [CommonModule, FaqRoutingModule, PageHeaderModule, FormsModule, MatPaginatorModule,MatSortModule],
+    declarations: [FaqComponent],
     providers:[AdminService]
 })
-export class TablesModule {}
+export class FaqModule {}

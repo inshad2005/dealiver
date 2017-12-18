@@ -10,7 +10,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import { UserService } from './user.service'
+import { UserService } from './user.service';
+import { SortPipe } from './sort.pipe'
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
     // for development
@@ -35,7 +36,7 @@ export function createTranslateLoader(http: HttpClient) {
         AppRoutingModule,
         FormsModule
     ],
-    declarations: [AppComponent],
+    declarations: [AppComponent, SortPipe],
     providers: [AuthGuard,UserService],
     bootstrap: [AppComponent]
 })

@@ -111,13 +111,120 @@ export class AdminService {
         
     );
   }
-
   getDeal(): Observable<any> {
     const url = `${ENV.mainApi}/deals`;
     return this.http.get<any>(url,httpOptions)
           .pipe(
           tap(heroes => this.log(`get deal Test`)),
           catchError(this.handleError('get deal Test', []))
+        
+    );
+  }
+  changeDealStatus(id):Observable<any> {
+    const url = `${ENV.mainApi}/updatedealstatus/`+id;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get deal Test`)),
+          catchError(this.handleError('get deal Test', []))
+        
+    );
+  }
+  deleteDeal(id):Observable<any> {
+    const url = `${ENV.mainApi}/deletedeal/`+id;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get deal Test`)),
+          catchError(this.handleError('get deal Test', []))
+        
+    );
+  }
+  getAboutUs():Observable<any> {
+    const url = `${ENV.mainApi}/aboutUs`;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get deal Test`)),
+          catchError(this.handleError('get deal Test', []))
+        
+    );
+  }
+  saveAboutUs(data):Observable<any>{
+    const url = `${ENV.mainApi}/updateAboutUs`;
+    return this.http.post<any>(url,data,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get deal Test`)),
+          catchError(this.handleError('get deal Test', []))
+        
+    );
+  }
+  getContactUs():Observable<any> {
+    const url = `${ENV.mainApi}/contactUs`;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get deal Test`)),
+          catchError(this.handleError('get deal Test', []))
+        
+    );
+  }
+  changeContactUsStatus(id):Observable<any> {
+    const url = `${ENV.mainApi}/updateContactUsStatus/`+id;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get deal Test`)),
+          catchError(this.handleError('get deal Test', []))
+        
+    );
+  }
+  termAndCondition():Observable<any> {
+    const url = `${ENV.mainApi}/termAndCondition`;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get deal Test`)),
+          catchError(this.handleError('get deal Test', []))
+        
+    );
+  }
+  updateTermAndCondition(data):Observable<any>{
+    const url = `${ENV.mainApi}/updateTermAndCondition`;
+    return this.http.post<any>(url,data,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get deal Test`)),
+          catchError(this.handleError('get deal Test', []))
+        
+    );
+  }
+  getFaq(): Observable<any> {
+    const url = `${ENV.mainApi}/faq`;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get Category Test`)),
+          catchError(this.handleError('get Category Test', []))
+        
+    );
+  }
+  changeFaqStatus(id): Observable<any> {
+    const url = `${ENV.mainApi}/updateFaqStatus/`+id;
+    return this.http.get<any>(url,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get Category Test`)),
+          catchError(this.handleError('get Category Test', []))
+        
+    );
+  }
+  updateFaq(data): Observable<any> {
+    const url = `${ENV.mainApi}/updateFaqDetails`;
+    return this.http.post<any>(url,data,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get Category Test`)),
+          catchError(this.handleError('get Category Test', []))
+        
+    );
+  }
+  createFaq(data): Observable<any> {
+    const url = `${ENV.mainApi}/createFaq`;
+    return this.http.post<any>(url,data,httpOptions)
+          .pipe(
+          tap(heroes => this.log(`get Category Test`)),
+          catchError(this.handleError('get Category Test', []))
         
     );
   }

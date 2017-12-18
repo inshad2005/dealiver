@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" >Content View <span class="pull-right"><a (click)="onClosed()"><i class="fa fa-times"></i></a></span> </h4>
+    <h4 class="modal-title" style="width: 100%;">Deal Details<span class="pull-right" style="float: right;"><a (click)="onClosed()"><i class="fa fa-times"></i></a></span> </h4>
 </div>
 <div class="modal-body">
     <fieldset>
@@ -63,7 +63,9 @@
                                             <th style="border-right: 2px solid #eee">attachments</th>
                                             <td>
                                                 <div *ngIf="deal.attachments.length>0 && deal.attachments">
-                                                    <div *ngFor="let attach of  deal.attachments">{{attach.attachment_name}}</div>
+                                                    <div *ngFor="let attach of  deal.attachments">{{attach.attachment_name}}
+                                                    <a  href="javascript:void(0)" class="fa fa-eye fa-fw fa-lg user-button" (click)="openDoc(attach.attachment_name)"></a>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -72,7 +74,9 @@
                                             <td>
                                                 <div *ngIf="deal.images.length>0 && deal.images">
                                                     <div *ngFor="let attach of  deal.images">
-                                                    {{attach.image_name}}</div>
+                                                    {{attach.image_name}}
+                                                    <a  href="javascript:void(0)" class="fa fa-eye fa-fw fa-lg user-button" (click)="openImage(attach.image_name)"></a>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>

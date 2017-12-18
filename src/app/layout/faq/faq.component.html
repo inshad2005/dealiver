@@ -1,5 +1,8 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Deal Type Management'" [icon]="'fa-cubes'"></app-page-header>
+    <app-page-header [heading]="'General Settings'" [icon]="'fa-sliders'"></app-page-header>
+    <h4 _ngcontent-c7="" class="page-header">
+            FAQ
+    </h4>
     <div class="row">
         <div class="col col-xl-12 col-lg-12">
             <div class="card mb-6">
@@ -11,8 +14,9 @@
                                     <span><i class="fa fa-plus"></i></span>
                                 </a>
                                 <div *ngIf="add_new">
-                                    <input class="form-control table-input-width" type="text" placeholder="Enter Name" name="type_value" [(ngModel)]="new_type_value">
-                                    <button (click)="add_new=!add_new;createdealtype(pager)" [disabled]="check_valid()" type="submit" class="profile-page-button btn btn-primary add-new-margin-left">Submit</button>
+                                    <input class="form-control table-input-width" type="text" placeholder="Enter Question" name="type_value" [(ngModel)]="new_type_question">
+                                    <input class="form-control table-input-width" type="text" placeholder="Enter Answer" name="type_value" [(ngModel)]="new_type_answer">
+                                    <button (click)="add_new=!add_new;createfaq(pager)" [disabled]="check_valid()" type="submit" class="profile-page-button btn btn-primary add-new-margin-left">Submit</button>
                                 </div>
                             </span>
                         </div>
@@ -29,7 +33,8 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th mat-sort-header="type_name">Type Name</th>
+                        <th mat-sort-header="question">Question</th>
+                        <th mat-sort-header="answer">Answer</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -38,10 +43,15 @@
                         <tr *ngFor="let user of sortedData;let i = index "  [class]="getClass(i)">
                             <th scope="row">{{(pageIndex*pageSize)+i+1}}</th>
                             <td >
-                                <span [hidden]="edit_type==i+1">{{user.type_name}}</span>
+                                <span [hidden]="edit_type==i+1">{{user.question}}</span>
                                 <div [hidden]="edit_type!=i+1">
-                                    <input class="form-control table-input-width" type="text" placeholder="Name" name="first_name" [(ngModel)]="input_value" >
-                                    <label style="margin:5px"><a *ngIf="edit_type==i+1" class="fa fa-check fa-lg user-button" (click)="edit_type=0;updateDeal(input_value,user.id)"></a></label>
+                                    <input class="form-control table-input-width" type="text" placeholder="Question" name="Question" [(ngModel)]="input_Question">
+                                </div>
+                            </td>
+                            <td >
+                                <span [hidden]="edit_type==i+1">{{user.answer}}</span>
+                                <div [hidden]="edit_type!=i+1">
+                                    <input class="form-control table-input-width" type="text" placeholder="Answer" name="Answer" [(ngModel)]="input_Answer">
                                 </div>
                             </td>
                             <td >
@@ -54,7 +64,7 @@
                             </td>
                             <td >
                                 <a *ngIf="edit_type!=i+1" href="javascript:void(0)" class="fa fa-pencil-square-o fa-lg user-button" (click)="edit_type=i+1"></a>
-                                <a *ngIf="edit_type==i+1" class="fa fa-check fa-lg user-button" (click)="edit_type=0;updateDeal(input_value,user.id)"></a>
+                                <a *ngIf="edit_type==i+1" class="fa fa-check fa-lg user-button" (click)="edit_type=0;updateDeal(input_Question,user.id)"></a>
                             </td>
                         </tr>
 
